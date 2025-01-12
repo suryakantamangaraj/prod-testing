@@ -41,7 +41,8 @@
             "vendorChunk": true,
             "extractLicenses": false,
             "sourceMap": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "baseHref": "/prod-testing/"
           },
           "configurations": {
             "production": {

@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write    # Add write permission
+      contents: write
     strategy:
       matrix:
         node-version: [18.19.x]
@@ -22,18 +22,22 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-
+        cache: 'yarn'
+    
+    - name: Install Yarn
+      run: npm install -g yarn
+    
     - name: Install Dependencies
       run: |
-        npm install
-        npm install -g @angular/cli@16
+        yarn install
+        yarn global add @angular/cli@16
     
     - name: Build
-      run: ng build --configuration=production
+      run: yarn build:prod
     
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: dist/portfolio-v2
-        branch: gh-pages
-        token: ${{ secrets.GITHUB_TOKEN }}  # Use default token
+        branch: master
+        token: ${{ secrets.GITHUB_TOKEN }}
