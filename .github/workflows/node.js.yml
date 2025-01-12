@@ -9,15 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [18.19.x]  # Updated to required Node.js version
+        node-version: [18.19.x]
 
     steps:
     - uses: actions/checkout@v3
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
@@ -26,6 +25,9 @@ jobs:
       run: |
         npm install
         npm install -g @angular/cli@16
+    
+    - name: List Files
+      run: ls -la src/
     
     - name: Build
       run: ng build --configuration=production
