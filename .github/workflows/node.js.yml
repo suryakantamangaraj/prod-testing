@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.19.x]  # Updated to required Node.js version
 
     steps:
     - uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm install
-        npm install -g @angular/cli
+        npm install -g @angular/cli@16
     
     - name: Build
       run: ng build --configuration=production
