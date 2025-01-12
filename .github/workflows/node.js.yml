@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -39,5 +39,5 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: dist/portfolio-v2
-        branch: master
+        branch: main
         token: ${{ secrets.GITHUB_TOKEN }}
