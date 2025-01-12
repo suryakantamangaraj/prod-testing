@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write    # Add write permission
     strategy:
       matrix:
         node-version: [18.19.x]
@@ -26,9 +28,6 @@ jobs:
         npm install
         npm install -g @angular/cli@16
     
-    - name: List Files
-      run: ls -la src/
-    
     - name: Build
       run: ng build --configuration=production
     
@@ -37,3 +36,4 @@ jobs:
       with:
         folder: dist/portfolio-v2
         branch: gh-pages
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use default token
